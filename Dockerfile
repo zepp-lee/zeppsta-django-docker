@@ -6,5 +6,5 @@ RUN apt-get update
 RUN apt-get --assume-yes install openssh-server
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 RUN echo "root:root" | chpasswd
-RUN service ssh start
+ENTRYPOINT service ssh start
 WORKDIR /code
