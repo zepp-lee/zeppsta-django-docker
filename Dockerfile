@@ -7,6 +7,6 @@ RUN apt-get --assume-yes install openssh-server
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 RUN echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config
 RUN echo "ssh" >> /etc/securetty
-RUN update-rc.d ssh defaults
 RUN passwd -d root
 WORKDIR /code
+ENTRYPOINT ["service, "ssh", "start"]
