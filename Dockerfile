@@ -5,5 +5,6 @@ ENV SSH_AUTH_SOCK="/ssh-agent"
 RUN apt-get update
 RUN apt-get --assume-yes install openssh-server
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+RUN update-rc.d ssh defaults
 RUN echo "root:root" | chpasswd
 WORKDIR /code
