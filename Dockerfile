@@ -5,6 +5,8 @@ ENV SSH_AUTH_SOCK="/ssh-agent"
 RUN apk update
 RUN apk add --update gcc git jpeg-dev musl-dev openrc openssh postgresql-dev zlib-dev
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-RUN echo "root:" | chpasswd
+RUN mkdir -p /run/openrc
+RUN touch /run/openrc/softlevel
 RUN rc-update add sshd
+RUN echo "root:" | chpasswd
 WORKDIR /code
