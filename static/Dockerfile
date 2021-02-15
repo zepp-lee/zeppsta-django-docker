@@ -6,5 +6,4 @@ ENV SSH_AUTH_SOCK="/ssh-agent"
 RUN apk -U upgrade
 RUN apk add --upgrade git npm openssh-client
 RUN adduser -D $USER
-USER $USER
 WORKDIR /code
