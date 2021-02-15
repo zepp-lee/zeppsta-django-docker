@@ -9,4 +9,3 @@ RUN echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config
 RUN echo "ssh" >> /etc/securetty
 RUN passwd -d root
 WORKDIR /code
-CMD service ssh start
