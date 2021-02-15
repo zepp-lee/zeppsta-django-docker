@@ -1,12 +1,9 @@
-FROM python:3.8-alpine
+FROM python:3.8
 ENV GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
 ENV PYTHONUNBUFFERED=1
 ENV SSH_AUTH_SOCK="/ssh-agent"
-RUN apk update
-RUN apk add --update gcc git jpeg-dev musl-dev openrc openssh postgresql-dev zlib-dev
+RUN apt-get update
+RUN apt-get --assume-yes install openssh-server
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-RUN mkdir -p /run/openrc
-RUN touch /run/openrc/softlevel
-RUN rc-update add sshd
-RUN echo "root:" | chpasswd
+RUN echo "root:root" | chpasswd
 WORKDIR /code
