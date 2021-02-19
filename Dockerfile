@@ -8,5 +8,4 @@ RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 RUN echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config
 RUN echo "ssh" >> /etc/securetty
 RUN passwd -d root
-RUN adduser $USER
 WORKDIR /code
