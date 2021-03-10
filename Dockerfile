@@ -10,6 +10,5 @@ RUN apk -U upgrade
 RUN apk add --upgrade git openssh-client
 RUN adduser -D $USER
 USER $USER
-RUN echo $USER
 RUN python -m venv venv/
 RUN /bin/bash -c "source venv/bin/activate"
