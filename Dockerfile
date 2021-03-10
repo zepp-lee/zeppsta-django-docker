@@ -7,6 +7,6 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV SSH_AUTH_SOCK="/ssh-agent"
 WORKDIR /code
 RUN apk -U upgrade
-RUN apk add --upgrade git openssh-client
+RUN apk add --upgrade git openssh-client postgresql-dev
 RUN adduser -D $USER
 USER $USER
