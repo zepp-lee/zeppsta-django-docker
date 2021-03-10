@@ -1,12 +1,14 @@
-FROM python:3.8
+FROM python:3.8-alpine
+ARG USER
 ENV GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+ENV HOME /home/$USER
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV SSH_AUTH_SOCK="/ssh-agent"
-RUN apt-get update
-RUN apt-get --assume-yes install openssh-server
-RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-RUN echo "PermitEmptyPasswords yes" >> /etc/ssh/sshd_config
-RUN echo "ssh" >> /etc/securetty
-RUN passwd -d root
 WORKDIR /code
+RUN apk -U upgrade
+RUN apk add --upgrade git openssh-client
+RUN adduser -D $USER
+USER $USER
+RUN python -m venv venv/
+RUN /bin/bash -c "source venv/bin/activate"
